@@ -22,22 +22,23 @@ and what you should write is the sayHi function that makes the code above work,
 
 // 1. Write a function called first that returns the first item of the array using a callback function
 
-  // Code Here
 
-  
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
-first(names, function(firstName){
-  console.log('The first name in names is ' + firstName);
-  return firstName;
-});
+
+first=(array, callback)=>{
+  callback(array[0])
+}
+
+first(names, function(firstName){console.log('The first name in names is ' + firstName);return firstName;});
 
 
 
 // 2. Write a function called last which returns the last item of the array using a callback function.
 
   //Code Here
-
-
+last=(array, callback)=>{
+  callback(array.reverse()[0]);
+}
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -49,7 +50,10 @@ last(names, function(lastName){
 // 3. Write a function called multiply that multiplies two numbers. Invoke the callback with the result of the multiplication. 
 
   //Code Here
-
+multiply=(num1,num2,callback)=>{
+  var x =num1*num2;
+callback(x);
+}
 
 
 multiply(4, 3, function(answer){
@@ -63,7 +67,10 @@ multiply(4, 3, function(answer){
 // If the name does not exist, invoke the callback with false as an argument.
 
   //Code Here 
-
+contains=(names, nom, callback )=>{
+  var x = names.indexOf(nom) >= 0;
+  callback(x);
+}
 
 
 
@@ -81,7 +88,9 @@ contains(names, 'Colt', function(result){
 // Invoke the callback with the modified array as an argument.
 
   //Code Here
-
+  uniq=(names, callback)=>{
+    callback(Array.from(new Set(names)));
+    };
 
 
 uniq(names, function(uniqArr){
@@ -92,7 +101,11 @@ uniq(names, function(uniqArr){
 // 6. Write a function called each that takes in an array of names. For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 
     //Code Here 
-
+each=(names , callback)=>{
+names.forEach(function(a){
+callback(a,names.indexOf(a));
+});
+}
 
 
 each(names, function(item, indice){
@@ -105,7 +118,13 @@ each(names, function(item, indice){
 // When the correct user object is found, invoke the callback with the user object as an argument.
 
 // Code here
-
+getUserById=(users, goal, callback)=>{
+users.forEach(function(x){
+if(x.id===goal){
+  callback(x);
+}
+});
+}
 
 
 var users = [
